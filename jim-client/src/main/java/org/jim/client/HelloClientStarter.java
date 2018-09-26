@@ -27,6 +27,7 @@ public class HelloClientStarter {
 
 	// 服务器节点
 	public static Node serverNode = new Node("im.rl-telecom.com", Const.SERVER_PORT);
+//	public static Node serverNode = new Node("127.0.0.1", Const.SERVER_PORT);
 
 	// handler, 包括编码、解码、消息处理
 	public static ClientAioHandler aioClientHandler = new HelloClientAioHandler();
@@ -57,7 +58,7 @@ public class HelloClientStarter {
 	}
 
 	private static void send() throws Exception {
-		byte[] loginBody = new LoginReqBody("", "", "5b366b03f0ab049b1a29f14a107ce166").toByte();
+		byte[] loginBody = new LoginReqBody("", "", "9296706007e0e501c57b3d491f400768").toByte();
 		TcpPacket loginPacket = new TcpPacket(Command.COMMAND_LOGIN_REQ, loginBody);
 		Aio.send(clientChannelContext, loginPacket);// 先登录;
 
@@ -75,10 +76,10 @@ public class HelloClientStarter {
 		TcpPacket reqMessagePacket = new TcpPacket(Command.COMMAND_GET_MESSAGE_REQ, reqMessageByte);
 		Aio.send(clientChannelContext, reqMessagePacket);// 取离线消息
 
-//		System.out.println("发送消息： ");
-//
-//		ChatBody chatBody = new ChatBody().setFrom("27c7q1mw1e").setTo("v45cjokmum").setMsgType(0).setChatType(2)
-//				.setGroup_id("").setContent("我在找你呢444");
+		//System.out.println("发送消息： ");
+
+//		ChatBody chatBody = new ChatBody().setFrom("v45cjokmum").setTo("27c7q1mw1e").setMsgType(0).setChatType(2)
+//				.setGroup_id("").setContent("离线消息测试, 重新发送333！");
 //		TcpPacket chatPacket = new TcpPacket(Command.COMMAND_CHAT_REQ, chatBody.toByte());
 //		Aio.send(clientChannelContext, chatPacket);
 
